@@ -37,11 +37,11 @@ command.handler = async () => {
   log.info('Found changed files: \n' + result);
 
   const files = result.split("\n");
-  const changedRepos = config.getReposFromFiles(files);
+  const changedRepos = config.getReposByFiles(files);
 
   for (const repo of changedRepos) {
     await runCommand(commit, {
-      dir: repo.dir
+      dir: repo.paths
     });
   }
 }
