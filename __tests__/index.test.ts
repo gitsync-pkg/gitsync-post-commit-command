@@ -18,8 +18,8 @@ describe('post-commit command', () => {
     await source.addFile('.gitsync.json', JSON.stringify({
       repos: [
         {
-          paths: 'package-name',
-          repo: target.dir,
+          sourceDir: 'package-name',
+          target: target.dir,
         }
       ]
     }));
@@ -40,8 +40,8 @@ describe('post-commit command', () => {
     await source.commitFile('.gitsync.json', JSON.stringify({
       repos: [
         {
-          paths: 'package-name',
-          repo: target.dir,
+          sourceDir: 'package-name',
+          target: target.dir,
         }
       ]
     }));

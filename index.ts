@@ -41,7 +41,7 @@ command.handler = async () => {
 
   for (const repo of changedRepos) {
     await runCommand(commit, {
-      dir: repo.paths
+      dir: repo.sourceDir
     });
   }
 }
