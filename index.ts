@@ -1,6 +1,6 @@
 import {Arguments, CommandModule} from 'yargs';
 import {Config} from '@gitsync/config';
-import git, {Git} from "ts-git";
+import git, {Git} from "git-cli-wrapper";
 import log from "@gitsync/log";
 import commit from '@gitsync/commit-command';
 
