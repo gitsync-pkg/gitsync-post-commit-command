@@ -14,6 +14,11 @@ command.command = 'post-commit';
 command.describe = 'A git hook, use to sync the commits to relative repositories after commit.';
 
 command.handler = async () => {
+  if (process.env.GITSYNC_UPDATE) {
+    log.info('Gitsync is updating commit, skipping post commit.');
+    return;
+  }
+
   const source = git('.');
   const config = new Config();
 
