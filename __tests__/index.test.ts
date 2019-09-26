@@ -51,7 +51,7 @@ describe('post-commit command', () => {
     expect(fs.existsSync(target.getFile('test.txt'))).toBeTruthy();
   });
 
-  test('do not run post-commit when running update', async() => {
+  test('do not run post-commit when running update', async () => {
     const source = await createRepo();
     const target = await createRepo();
 

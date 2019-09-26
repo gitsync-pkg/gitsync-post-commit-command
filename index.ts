@@ -52,10 +52,7 @@ command.handler = async () => {
 }
 
 async function runCommand(command: CommandModule, options: any) {
-  await command.handler(Object.assign({
-    $0: '',
-    _: [],
-  }, options));
+  await command.handler(options);
 }
 
 export default command;
