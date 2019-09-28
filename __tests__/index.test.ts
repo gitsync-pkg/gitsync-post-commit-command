@@ -1,14 +1,8 @@
 import * as fs from 'fs';
-import {logMessage, RepoManager, runCommand} from '@gitsync/test';
+import {logMessage, createRepo, runCommand} from '@gitsync/test';
 import postCommit from '..';
 
-const {createRepo, removeRepos} = new RepoManager();
-
 describe('post-commit command', () => {
-  afterAll(async () => {
-    await removeRepos();
-  });
-
   test('run commit', async () => {
     const source = await createRepo();
     const target = await createRepo();
