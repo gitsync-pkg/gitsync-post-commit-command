@@ -47,6 +47,13 @@ describe('post-commit command', () => {
     expect(fs.existsSync(target.getFile('test.txt'))).toBeTruthy();
   });
 
+  test('run command on empty repo', async () => {
+    const source = await createRepo();
+    await runCommand(postCommit, source);
+
+    expect(logMessage()).toContain('The repository does not have any commits yet.');
+  });
+
   test('do not run post-commit when running update', async () => {
     const source = await createRepo();
     const target = await createRepo();

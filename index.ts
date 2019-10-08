@@ -23,12 +23,13 @@ command.handler = async () => {
   const config = new Config();
 
   let prev;
-  const revs = await source.run(['rev-list', '-n', '2', '--all'])
-  switch (revs.split('\n').length) {
-    case 0:
-      log.warn('The repository does not have any commits yet.');
-      return;
+  const revs = await source.run(['rev-list', '-n', '2', '--all']);
+  if (!revs) {
+    log.warn('The repository does not have any commits yet.');
+    return;
+  }
 
+  switch (revs.split('\n').length) {
     case 1:
       // Git empty tree hash
       prev = '4b825dc642cb6eb9a060e54bf8d69288fbee4904';
