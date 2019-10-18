@@ -77,6 +77,30 @@ describe('post-commit command', () => {
     expect(logMessage()).toContain('Gitsync is updating commit, skipping post commit.');
     expect(fs.existsSync(target.getFile('test.txt'))).toBeFalsy();
   });
+
+  test('ignore squashed repository', async () => {
+    const source = await createRepo();
+    const target = await createRepo();
+
+    await source.addFile('.gitsync.json', JSON.stringify({
+      repos: [
+        {
+          sourceDir: 'package-name',
+          target: target.dir,
+          squash: true,
+        }
+      ]
+    }));
+
+    await source.commitFile('package-name/test.txt');
+
+    await runCommand(postCommit, source, {
+      dir: 'package-name',
+    });
+
+    expect(fs.existsSync(target.getFile('test.txt'))).toBeFalsy();
+    expect(logMessage()).toContain('Ignore sync squashed repository: package-name');
+  });
 });
 
 

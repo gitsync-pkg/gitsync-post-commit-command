@@ -46,6 +46,11 @@ command.handler = async () => {
   const changedRepos = config.getReposByFiles(files);
 
   for (const repo of changedRepos) {
+    if (repo.squash) {
+      log.info(`Ignore sync squashed repository: ${repo.sourceDir}`);
+      continue;
+    }
+
     await runCommand(commit, {
       sourceDir: repo.sourceDir,
       yes: true,
