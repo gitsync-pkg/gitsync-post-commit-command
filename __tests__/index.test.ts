@@ -76,6 +76,7 @@ describe('post-commit command', () => {
 
     expect(logMessage()).toContain('Gitsync is updating commit, skipping post commit.');
     expect(fs.existsSync(target.getFile('test.txt'))).toBeFalsy();
+    delete process.env.GITSYNC_UPDATE;
   });
 
   test('ignore squashed repository', async () => {
